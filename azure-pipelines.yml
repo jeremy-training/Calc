@@ -10,6 +10,17 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarConnection'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: '963ded4635258bac9c247c767250fb0120e437f7'
+    cliProjectName: 'test'
+    cliSources: '.'
+
+- task: SonarQubeAnalyze@4
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
