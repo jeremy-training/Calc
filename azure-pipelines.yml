@@ -28,7 +28,7 @@ steps:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/site/cobertura/coverage.xml'
     pathToSources: '$(System.DefaultWorkingDirectory)/**/**/src/main/java'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/**/reports/cobertura'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/**/site/cobertura'
 
 
 - task: PublishBuildArtifacts@1
@@ -36,3 +36,9 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'CalcArtifact'
     publishLocation: 'Container'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'CalcArtifact2'
+    publishLocation: 'pipeline'
